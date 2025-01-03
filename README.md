@@ -29,3 +29,14 @@
     <img src="https://github.com/user-attachments/assets/9ea19a05-bcc2-4ccb-811b-5039a4fa7da0"> 
   </li>
 </ol>
+<h3>Как запустить проект локально</h3>
+<h5>Код написан на версии Python 3.12.4</h5>
+ <ol>
+      <li>Создание виртуального окружения: python -m venv /path/to/my_venv </li>
+      <li>Активация виртуального окружения: 
+            <p>Mac/linux - source ./venv/bin/activate</p>
+            <p>WIndows - .\venv\Scripts\activate.bat</p></li>
+      <li>Установка зависимостей из файла <a href='https://github.com/bezalabernaya/task_7/blob/main/requirements.txt'>requirements.txt</a>:
+            <p>pip install -r requirements.txt</p>
+</li>
+  </ol>
