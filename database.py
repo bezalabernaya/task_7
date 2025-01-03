@@ -46,18 +46,16 @@ class DateBase:
     def select_data(self, num: int):
         cursor = self._con.cursor()
         cursor.execute(
-            """
-            select date, city, weather, temperature, feels_like, wind_speed from history
+            f"""
+            select * from history order by request_id desc limit {num}
         """
         )
         history = cursor.fetchall()
-        self.history_len = len(history)
+        cursor.execute('''SELECT MAX(request_id) FROM history''')
+        self.history_len = int(cursor.fetchone()[0])
         try:
             if 1 <= num <= self.history_len:
-                print("date, city, weather, temperature, feels_like, wind_speed")
-                for _ in range(self.history_len-num, self.history_len):
-                    print(*history[_])
-                print("\n")
+                return history
             elif self.history_len == 0:
                 print('Прежде чем смотреть историю запросов, необходимо сделать хотя бы один)')
             else:

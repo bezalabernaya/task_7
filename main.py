@@ -51,8 +51,9 @@ def start_2():
 def start_3():
     try:
         num = int(input())
-        with database as db:
-            db.select_data(num=num)
+        for _ in range(num):
+            with database as db:
+                output(db.select_data(num=num)[_][1::])
     except ValueError:
         print('Введите целое число или цифру')
         return start_3()
