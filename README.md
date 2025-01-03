@@ -35,7 +35,7 @@
       <li>Активация виртуального окружения: 
             <p>Mac/linux - source ./venv/bin/activate</p>
             <p>WIndows - .\venv\Scripts\activate.bat</p></li>
-      <li>Установка зависимостей из файла <a href='https://ip-api.com/docs/api:json'>requirements.txt</a>
+      <li>Установка зависимостей из файла <a href='https://github.com/bezalabernaya/task_7/blob/main/requirements.txt'>requirements.txt</a>
 </li>
   </ol>
   ```bash
