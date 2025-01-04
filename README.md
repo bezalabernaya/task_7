@@ -32,7 +32,8 @@
 <h3>Как запустить проект локально</h3>
 <h5>Код написан на версии Python 3.12.4</h5>
  <ol>
-      <li>Создание виртуального окружения: python -m venv /path/to/my_venv </li>
+      <li>Создание виртуального окружения:</li>
+        <p>python -m venv /path/to/my_venv</p>
       <li>Активация виртуального окружения: 
             <p>Mac/linux - source ./venv/bin/activate</p>
             <p>WIndows - .\venv\Scripts\activate.bat</p></li>
