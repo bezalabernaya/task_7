@@ -2,7 +2,7 @@ import requests
 import datetime
 from dateutil import tz
 from database import DateBase
-API_key = 'f44eef61e43ffa3eaa3fa6e4ced549e4'
+API_key = ''
 
 
 def start():
