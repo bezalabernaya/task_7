@@ -6,34 +6,34 @@ API_key = 'f44eef61e43ffa3eaa3fa6e4ced549e4'
 
 
 def start():
-    print('Привет! Вас мучает вопрос в чем выйти на улицу? Посмотрим, чем я смогу помочь!\n'
-          '1 - Погода за окном\n'
-          '2 - Погода в городе N\n'
-          '3 - История запросов\n'
-          '4 - Завершение работы\n')
+    while True:
+        print('Привет! Вас мучает вопрос в чем выйти на улицу? Посмотрим, чем я смогу помочь!\n'
+              '1 - Погода за окном\n'
+              '2 - Погода в городе N\n'
+              '3 - История запросов\n'
+              '4 - Завершение работы\n')
 
-    option = input()
+        option = input()
 
-    if option == '1':
-        start_1()
-    elif option == '2':
-        print('Введите название интересующего Вас города')
-        start_2()
-    elif option == '3':
-        print("Введите количество запросов, которое вы хотели бы увидеть")
-        start_3()
-    elif option == '4':
-        print('До встречи!😘')
-    else:
-        print("Введите корректное значение")
-        return start()
+        if option == '1':
+            start_1()
+        elif option == '2':
+            print('Введите название интересующего Вас города')
+            start_2()
+        elif option == '3':
+            print("Введите количество запросов, которое вы хотели бы увидеть")
+            start_3()
+        elif option == '4':
+            print('До встречи!😘')
+            break
+        else:
+            print("Введите корректное значение")
 
 
 def start_1():
     city = get_city_by_ip()
     lat, lon, city_tr = get_lan_lon_by_city(city)
     output(get_weather_by_lon_lan(lat, lon, city_tr))
-    return start()
 
 
 def start_2():
@@ -42,26 +42,21 @@ def start_2():
         lat, lon, city_tr = get_lan_lon_by_city(city)
         output(get_weather_by_lon_lan(lat, lon, city_tr))
     except Exception:
-        print('Похоже такого города нет, побробуйте другое название')
+        print('Похоже такого города нет, попробуйте другое название')
         return start_2()
-    else:
-        return start()
 
 
 def start_3():
     try:
         num = int(input())
         for _ in range(num):
-            with database as db:
-                output(db.select_data(num=num)[_][1::])
+            output(db.select_data(num=num)[_][1::])
     except ValueError:
         print('Введите целое число или цифру')
         return start_3()
     except IndexError:
         print(f"Введите значение от 1 до {database.history_len}\n")
         return start_3()
-    else:
-        return start()
 
 
 def get_city_by_ip():
@@ -85,8 +80,7 @@ def get_weather_by_lon_lan(lat, lon, city):
     date = datetime.datetime.now(tz=tz.tzlocal()).strftime("%Y-%m-%d %H:%M:%S %z")
 
     weather_info = [date, city,  weather, temperature, feels_like, wind_speed]
-    with database as db:
-        db.insert_data(info=weather_info)
+    db.insert_data(info=weather_info)
 
     return weather_info
 
@@ -104,4 +98,4 @@ if __name__ == "__main__":
     database = DateBase()
     with database as db:
         db.create_table()
-    start()
+        start()
